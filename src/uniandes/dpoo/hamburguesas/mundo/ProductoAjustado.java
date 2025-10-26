@@ -73,4 +73,18 @@ public class ProductoAjustado implements Producto
         return sb.toString( );
     }
 
+	public boolean agregarIngrediente(Ingrediente ingrediente) throws NullPointerException {
+		if (ingrediente != null) {
+			return agregados.add(ingrediente);
+		}
+		throw new NullPointerException("El ingrediente no puede ser nulo");
+	}
+
+	public boolean eliminarIngrediente(String ingrediente) throws NullPointerException {
+		if (ingrediente != null) {
+			return eliminados.add(new Ingrediente(ingrediente, 0));
+		}
+		throw new NullPointerException("El ingrediente no puede ser nulo");
+	}
+
 }
