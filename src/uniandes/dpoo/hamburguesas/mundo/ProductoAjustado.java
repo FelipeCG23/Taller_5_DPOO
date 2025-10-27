@@ -45,7 +45,11 @@ public class ProductoAjustado implements Producto
     @Override
     public int getPrecio( )
     {
-        return 0;
+    	int precioNuevo = productoBase.getPrecio();
+    	for (Ingrediente ingrediente : agregados) {
+    		precioNuevo += ingrediente.getCostoAdicional();
+    	}
+        return precioNuevo;
     }
 
     /**
@@ -73,18 +77,20 @@ public class ProductoAjustado implements Producto
         return sb.toString( );
     }
 
-	public boolean agregarIngrediente(Ingrediente ingrediente) throws NullPointerException {
-		if (ingrediente != null) {
-			return agregados.add(ingrediente);
-		}
-		throw new NullPointerException("El ingrediente no puede ser nulo");
+	public boolean agregarIngrediente(Ingrediente ingrediente) {
+		return agregados.add(ingrediente);
 	}
 
-	public boolean eliminarIngrediente(String ingrediente) throws NullPointerException {
-		if (ingrediente != null) {
-			return eliminados.add(new Ingrediente(ingrediente, 0));
-		}
-		throw new NullPointerException("El ingrediente no puede ser nulo");
+	public boolean eliminarIngrediente(String ingrediente) {
+		return eliminados.add(new Ingrediente(ingrediente, 0));
+	}
+
+	public ArrayList<Ingrediente> getIngredientesAgregados() {
+		return agregados;
+	}
+	
+	public ArrayList<Ingrediente> getIngredientesEliminados() {
+		return eliminados;
 	}
 
 }
