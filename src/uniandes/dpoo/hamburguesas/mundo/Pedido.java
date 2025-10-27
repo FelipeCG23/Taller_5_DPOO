@@ -77,30 +77,30 @@ public class Pedido
      * Agrega un nuevo producto al pedido
      * @param nuevoProducto El producto que debe agregarse al pedido
      */
-    public void agregarProducto( Producto nuevoProducto )
+    public boolean agregarProducto( Producto nuevoProducto )
     {
-        productos.add( nuevoProducto );
+        return productos.add( nuevoProducto );
     }
 
     /**
      * Retorna el precio total del pedido, basado en el valor de cada uno de los productos y en el IVA
      * @return La sumatoria de los precios de los productos con el valor adicional del IVA
      */
-    public int getPrecioTotalPedido( )
+    public int getPrecioTotalPedido()
     {
-        return getPrecioNetoPedido( ) + getPrecioIVAPedido( );
+        return getPrecioNetoPedido() + getPrecioIVAPedido();
     }
 
     /**
      * Retorna el precio de los productos del pedido
      * @return La sumatoria de los precios de los productos
      */
-    private int getPrecioNetoPedido( )
+    public int getPrecioNetoPedido()
     {
         int valor = 0;
-        for( Producto item : productos )
+        for(Producto item : productos)
         {
-            valor += item.getPrecio( );
+            valor += item.getPrecio();
         }
         return valor;
     }
@@ -109,9 +109,9 @@ public class Pedido
      * Retorna el valor del IVA del producto, que corresponde al 19% del precio neto
      * @return
      */
-    private int getPrecioIVAPedido( )
+    public int getPrecioIVAPedido()
     {
-        return ( int ) ( getPrecioNetoPedido( ) * IVA );
+        return (int) (getPrecioNetoPedido() * IVA);
     }
 
     /**
@@ -163,5 +163,13 @@ public class Pedido
         out.print( factura );
         out.close( );
     }
+
+	public Object getDireccionCliente() {
+		return direccionCliente;
+	}
+
+	public ArrayList<Producto> getProductos() {
+		return productos;
+	}
 
 }
