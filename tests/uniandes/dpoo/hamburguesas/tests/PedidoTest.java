@@ -50,6 +50,11 @@ public class PedidoTest {
 	}
 	
 	@Test
+	void pruebaIdPedido() {
+		assertEquals(0, pedido.getIdPedido(), "El ID del pedido no fue el esperado.");
+	}
+	
+	@Test
 	void generarTextoFactura() {
 		ProductoMenu pm1 = new ProductoMenu("todoterreno", 25000);
 		ProductoMenu pm2 = new ProductoMenu("corral queso", 16000);

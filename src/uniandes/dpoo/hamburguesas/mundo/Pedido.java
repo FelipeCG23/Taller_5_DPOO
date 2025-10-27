@@ -159,8 +159,8 @@ public class Pedido
 
         PrintWriter out;
         out = new PrintWriter(archivo);
-        out.print( factura );
-        out.close( );
+        out.print(factura);
+        out.close();
     }
 
 	public Object getDireccionCliente() {
