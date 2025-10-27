@@ -34,7 +34,7 @@ public class PedidoTest {
 	
 	@Test
 	void pruebaAgregarProducto() {
-		ProductoMenu pm = new ProductoMenu("todoterreno", 25000);
+		ProductoMenu pm = new ProductoMenu("nuggets de pollo", 14000);
 		assertTrue(pedido.agregarProducto(pm), "El producto no se agregó correctamente al pedido.");
 		assertEquals(1, pedido.getProductos().size(), "El número de productos en el pedido no fue el esperado.");
 		assertEquals(pm, pedido.getProductos().get(0), "El producto agregado no coincide con el esperado.");
@@ -86,7 +86,7 @@ public class PedidoTest {
 			assertTrue(archivoNuevo.exists(), "El archvio de la factura no fue creado correctamente.");
 			assertEquals(Files.readString(Path.of(archivoNuevo.getAbsolutePath())), pedido.generarTextoFactura(), "El contenido del archivo de la factura no fue el esperado.");
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			fail("No se pudo guardar o leer el archivo de la factura: " + e.getMessage());
 		} finally {
 			archivoNuevo.delete();
 		}

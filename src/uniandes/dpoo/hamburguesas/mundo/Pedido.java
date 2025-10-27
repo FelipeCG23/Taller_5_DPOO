@@ -128,25 +128,24 @@ public class Pedido
      * 5. El valor total del pedido
      * @return
      */
-    public String generarTextoFactura( )
-    {
-        StringBuffer sb = new StringBuffer( );
+    public String generarTextoFactura() {
+        StringBuffer sb = new StringBuffer();
 
-        sb.append( "Cliente: " + nombreCliente + "\n" );
-        sb.append( "Dirección: " + direccionCliente + "\n" );
-        sb.append( "----------------\n" );
+        sb.append("Cliente: " + nombreCliente + "\n");
+        sb.append("Dirección: " + direccionCliente + "\n");
+        sb.append("----------------\n");
 
-        for( Producto item : productos )
-        {
-            sb.append( item.generarTextoFactura( ) );
+        for (Producto item : productos) {
+        	System.out.println(item.generarTextoFactura());
+            sb.append(item.generarTextoFactura());
         }
 
-        sb.append( "----------------\n" );
-        sb.append( "Precio Neto:  " + getPrecioNetoPedido( ) + "\n" );
-        sb.append( "IVA:          " + getPrecioIVAPedido( ) + "\n" );
-        sb.append( "Precio Total: " + getPrecioTotalPedido( ) + "\n" );
+        sb.append("----------------\n");
+        sb.append("Precio Neto:  " + getPrecioNetoPedido() + "\n");
+        sb.append("IVA:          " + getPrecioIVAPedido() + "\n");
+        sb.append("Precio Total: " + getPrecioTotalPedido() + "\n");
 
-        return sb.toString( );
+        return sb.toString();
     }
 
     /**
@@ -163,7 +162,7 @@ public class Pedido
         out.close();
     }
 
-	public Object getDireccionCliente() {
+	public String getDireccionCliente() {
 		return direccionCliente;
 	}
 
