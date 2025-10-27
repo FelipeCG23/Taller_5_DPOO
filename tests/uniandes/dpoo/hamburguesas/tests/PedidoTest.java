@@ -4,6 +4,11 @@ import uniandes.dpoo.hamburguesas.mundo.Pedido;
 import uniandes.dpoo.hamburguesas.mundo.Producto;
 import uniandes.dpoo.hamburguesas.mundo.ProductoMenu;
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.AfterEach;
@@ -62,5 +67,23 @@ public class PedidoTest {
         sb.append( "IVA:          " + pedido.getPrecioIVAPedido() + "\n");
         sb.append( "Precio Total: " + pedido.getPrecioTotalPedido() + "\n");
         assertEquals(sb.toString(), pedido.generarTextoFactura(), "La factura generada no fue la esperada.");
+	}
+	
+	@Test
+	void pruebaGuardarFactura() {
+		ProductoMenu pm1 = new ProductoMenu("todoterreno", 25000);
+		ProductoMenu pm2 = new ProductoMenu("corral queso", 16000);
+		pedido.agregarProducto(pm1);
+		pedido.agregarProducto(pm2);
+		File archivoNuevo = new File("Factura_Prueba.txt");
+		try {
+			pedido.guardarFactura(archivoNuevo);
+			assertTrue(archivoNuevo.exists(), "El archvio de la factura no fue creado correctamente.");
+			assertEquals(Files.readString(Path.of(archivoNuevo.getAbsolutePath())), pedido.generarTextoFactura(), "El contenido del archivo de la factura no fue el esperado.");
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			archivoNuevo.delete();
+		}
 	}
 }

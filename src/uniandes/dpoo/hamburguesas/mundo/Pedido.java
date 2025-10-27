@@ -151,15 +151,14 @@ public class Pedido
 
     /**
      * Guarda la factura del pedido en el archivo indicado
-     * @param archivo El archivo donde debe quedar almacenada la factua del pedido
+     * @param string El archivo donde debe quedar almacenada la factua del pedido
      * @throws FileNotFoundException Se lanza esta excepción si no se puede crear el archivo para guardar la factura
      */
-    public void guardarFactura( File archivo ) throws FileNotFoundException
-    {
+    public void guardarFactura(File archivo) throws FileNotFoundException {
         String factura = generarTextoFactura( );
 
         PrintWriter out;
-        out = new PrintWriter( archivo );
+        out = new PrintWriter(archivo);
         out.print( factura );
         out.close( );
     }
